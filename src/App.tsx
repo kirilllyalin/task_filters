@@ -6,7 +6,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img alt="logo" className="App-logo" src={logo} />
         <p>
           Edit
           {' '}
