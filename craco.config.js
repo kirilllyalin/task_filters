@@ -8,7 +8,9 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: {},
+            modifyVars: {
+              '@border-radius-base': '4px',
+            },
             javascriptEnabled: true,
           },
         },

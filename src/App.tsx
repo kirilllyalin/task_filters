@@ -1,29 +1,22 @@
-import React from 'react'
+import {
+  BrowserRouter as Router, Routes, Route, Navigate,
+} from 'react-router-dom'
 
-import './App.css'
+import { Main } from 'pages'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
-}
+import { WrapperStyled } from './App.style'
+
+const App = () => (
+  <Router>
+    <WrapperStyled>
+      <Routes>
+        <Route element={<Main />} path="/" />
+        <Route element={<Navigate replace to="/items" />} path="/" />
+        <Route element={<Navigate replace to="/items" />} path="*" />
+      </Routes>
+    </WrapperStyled>
+  </Router>
+
+)
 
 export default App

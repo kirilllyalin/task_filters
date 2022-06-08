@@ -19,7 +19,8 @@
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "tsx": true
     }
   },
   "settings": {
@@ -44,8 +45,9 @@
     "no-relative-import-paths"
   ],
   "rules": {
-    "react/jsx-filename-extension": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "react/state-in-constructor": 0,
+    "react/react-in-jsx-scope": 0,
     "react/jsx-one-expression-per-line": [
       "error",
       {
@@ -82,7 +84,6 @@
     ],
     "import/no-cycle": "off",
     "jsx-a11y/click-events-have-key-events": 0,
-    "camelcase": "off",
     "padding-line-between-statements": [
       "error",
       {
@@ -199,6 +200,12 @@
       "error",
       {
         "ignoreChainWithDepth": 1
+      }
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
       }
     ]
   },
