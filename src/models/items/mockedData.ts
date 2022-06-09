@@ -1,24 +1,16 @@
 /* eslint-disable max-len */
+import { Car } from './types'
 
-export interface Car {
-  mark: string,
-  model: string,
-  year: number,
-  price: number,
-  image: string,
-  mileage: number,
-  engine: number,
-  transmission: string,
-  color: string,
-  isCrashed: boolean,
-  isCanBeLoaned: boolean,
+export const filterData: {[key: string]: string[]} = {
+  marks: ['Toyota', 'BMW', 'KIA', 'Renault'],
+  colors: ['Blue', 'Red', 'Gray', 'Bronze', 'Black', 'White', 'Beige', 'Green', 'Brown', 'Gold'],
 }
 
 export const data: Car[] = [
   {
     mark: 'Toyota',
     model: 'Corolla',
-    year: 2020,
+    year: '2020',
     price: 12000,
     image: 'https://i.gaw.to/content/photos/46/35/463586-toyota-corolla-hatchback-manuelle-2021-une-boite-manuelle-intelligente.jpeg?1024x640',
     mileage: 25000,
@@ -31,7 +23,7 @@ export const data: Car[] = [
   {
     mark: 'Toyota',
     model: 'Camry',
-    year: 2020,
+    year: '2020',
     price: 16000,
     image: 'https://motoramaze.com/wp-content/uploads/2020/07/Latest-Real-Saab-Sells-for-New-Toyota-Camry.jpg',
     mileage: 20000,
@@ -44,7 +36,7 @@ export const data: Car[] = [
   {
     mark: 'Toyota',
     model: 'Land Cruiser',
-    year: 2005,
+    year: '2005',
     price: 5000,
     image: 'https://aae18879ee.clvaw-cdnwnd.com/d82004de1abcb55ed0f74080add6211a/200000104-468f8468fb/01w-7.jpg?ph=aae18879ee',
     mileage: 80000,
@@ -57,7 +49,7 @@ export const data: Car[] = [
   {
     mark: 'BMW',
     model: 'X5',
-    year: 2010,
+    year: '2010',
     price: 8000,
     image: 'https://img.autoabc.lv/BMW-X5/BMW-X5_2010_Apvidus_151022104140_8.jpg',
     mileage: 9000,
@@ -70,7 +62,7 @@ export const data: Car[] = [
   {
     mark: 'BMW',
     model: 'X6',
-    year: 2018,
+    year: '2018',
     price: 20000,
     image: 'https://upload.wikimedia.org/wikipedia/commons/7/77/2018_BMW_X6_%28F16%29_xDrive35i_wagon_%282018-10-30%29_01.jpg',
     mileage: 50000,
@@ -83,7 +75,7 @@ export const data: Car[] = [
   {
     mark: 'BMW',
     model: 'i8',
-    year: 2021,
+    year: '2021',
     price: 100000,
     image: 'https://ag-spots-2021.o.auroraobjects.eu/2021/08/16/bmw-i8-roadster-c429416082021203925_1.jpg?1629139181',
     mileage: 0,
@@ -96,7 +88,7 @@ export const data: Car[] = [
   {
     mark: 'Renault',
     model: 'Logan',
-    year: 2014,
+    year: '2014',
     price: 10000,
     image: 'https://cars.ua/thumb/car/20200731/w933/h622/q80/kupit-renault-logan-romny-2363384.jpg',
     mileage: 70000,
@@ -109,7 +101,7 @@ export const data: Car[] = [
   {
     mark: 'Renault',
     model: 'Duster',
-    year: 2019,
+    year: '2019',
     price: 9000,
     image: 'https://upload.wikimedia.org/wikipedia/commons/7/77/2018_BMW_X6_%28F16%29_xDrive35i_wagon_%282018-10-30%29_01.jpg',
     mileage: 40000,
@@ -122,7 +114,7 @@ export const data: Car[] = [
   {
     mark: 'Renault',
     model: 'Sandero',
-    year: 2009,
+    year: '2009',
     price: 4000,
     image: 'https://www.larevueautomobile.com/images/fiche-technique/2009/Dacia/Sandero/Dacia_Sandero_001.jpg',
     mileage: 20000,
@@ -135,7 +127,7 @@ export const data: Car[] = [
   {
     mark: 'KIA',
     model: 'Rio',
-    year: 2005,
+    year: '2005',
     price: 3000,
     image: 'https://www.auto-data.net/images/f111/Kia-Rio-II-Hatchback-JB_1.jpg',
     mileage: 120000,
@@ -148,7 +140,7 @@ export const data: Car[] = [
   {
     mark: 'KIA',
     model: 'K5',
-    year: 2022,
+    year: '2022',
     price: 50000,
     image: 'https://preview.redd.it/5pe05nm7smj71.jpg?auto=webp&s=cb9dd6055212383564720355c13e95fe8edf5580',
     mileage: 10000,
@@ -161,7 +153,7 @@ export const data: Car[] = [
   {
     mark: 'KIA',
     model: 'Soul',
-    year: 2016,
+    year: '2016',
     price: 5500,
     image: 'https://www.nissanblainville.com/photos/by-size/312085/1200x630/4862715.JPG',
     mileage: 35000,

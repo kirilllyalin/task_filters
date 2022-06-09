@@ -2,43 +2,28 @@
 import { combine } from 'effector'
 
 import {
-  filterByMark,
-  resetFilters,
-  $filters,
+  checkForRange, checkEquality,
+} from './helpers'
+import { Filter } from './types'
+
+import {
+  $filter,
   $items,
-  filter,
-  Filter,
+  resetFilters,
+  filtered,
 } from '.'
 
-const checkEquality = (value: any, checkedValue: any): boolean => {
-  if (!value || value === checkedValue) {
-    return true
-  }
-
-  return false
-}
-
-const checkForRange = (value: any, checkedValue: any): boolean => {
-  if (!value || (checkedValue >= value.from && checkedValue <= value.to)) {
-    return true
-  }
-
-  return false
-}
-
-export const $activeFilters = $filters
-  .on(filter, (state, { key, value }) => ({ ...state, [key]: value }))
+export const $activeFilters = $filter
+  .on(filtered, (state, { key, value }) => ({ ...state, [key]: value }))
   .reset(resetFilters)
 
 export const $filteredItems = combine($items, $activeFilters, (items, filters) => {
-  const filterKeys = Object.keys(filters) as Array<keyof Filter>
-
-  const rangeFilterKeys: Array<keyof Filter> = ['price', 'mileage']
-
   let filteredItems = items
 
+  const filterKeys = Object.keys(filters) as Array<keyof Filter>
+
   filterKeys.forEach((key) => {
-    if (rangeFilterKeys.includes(key)) {
+    if (key === 'price' || key === 'mileage' || key === 'year') {
       filteredItems = filteredItems.filter(item => checkForRange(filters[key], item[key]))
     } else {
       filteredItems = filteredItems.filter(item => checkEquality(filters[key], item[key]))
@@ -48,9 +33,4 @@ export const $filteredItems = combine($items, $activeFilters, (items, filters) =
   return filteredItems
 })
 
-$filteredItems.watch(state => console.log(state))
-$activeFilters.watch(state => console.log(state))
-
-filterByMark('Toyota')
-
-setTimeout(() => filterByMark(null), 3000)
+export const $filteredItemsCount = $filteredItems.map(items => items.length)

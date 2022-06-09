@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Row } from 'antd'
+import { Row, Col } from 'antd'
 
 import {
   Cards, Filters, List, ViewToggle,
@@ -14,11 +14,14 @@ const Main = () => {
 
   return (
     <WrapperStyled>
-      <Row justify="space-between">
-        <Filters />
-        <ViewToggle />
+      <Row gutter={[30, 0]} style={{ width: '100%' }}>
+        <Col span={3}>
+          <Filters />
+        </Col>
+        <Col span={21}>
+          {isCards ? <Cards /> : <List />}
+        </Col>
       </Row>
-      {isCards ? <Cards /> : <List />}
     </WrapperStyled>
   )
 }
