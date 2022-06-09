@@ -9,11 +9,10 @@ export type FromToStringValue = { from: string, to: string }
 export type DefaultValue = string | number | boolean | null
 
 export interface Filter {
-  mark: string | null,
   year: FromToStringValue | null,
   price: FromToNumberValue | null,
   mileage: FromToNumberValue | null,
-  engine: number,
+  mark: string | null,
   transmission: 'Automatic' | 'Manual' | null,
   color: string | null,
   isCrashed: boolean | null,
@@ -27,7 +26,6 @@ export interface Car {
   price: number,
   image: string,
   mileage: number,
-  engine: number,
   transmission: string,
   color: string,
   isCrashed: boolean,

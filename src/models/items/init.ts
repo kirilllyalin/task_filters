@@ -1,36 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { combine } from 'effector'
 
-import {
-  checkForRange, checkEquality,
-} from './helpers'
-import { Filter } from './types'
+import { filterItemsByKey } from './helpers'
+import { Car, Filter } from './types'
 
 import {
   $filter,
   $items,
   resetFilters,
-  filtered,
+  filter,
+  $viewMode,
+  changedViewMode,
 } from '.'
 
-export const $activeFilters = $filter
-  .on(filtered, (state, { key, value }) => ({ ...state, [key]: value }))
+export const $currentFilter = $filter
+  .on(filter, (state, { key, value }) => ({ ...state, [key]: value }))
   .reset(resetFilters)
 
-export const $filteredItems = combine($items, $activeFilters, (items, filters) => {
-  let filteredItems = items
+export const $filteredItems = combine($items, $currentFilter, (items, currentFilters) => {
+  let filteredItems: Car[] = items
 
-  const filterKeys = Object.keys(filters) as Array<keyof Filter>
+  const filterKeys = Object.keys(currentFilters) as Array<keyof Filter>
 
-  filterKeys.forEach((key) => {
-    if (key === 'price' || key === 'mileage' || key === 'year') {
-      filteredItems = filteredItems.filter(item => checkForRange(filters[key], item[key]))
-    } else {
-      filteredItems = filteredItems.filter(item => checkEquality(filters[key], item[key]))
-    }
-  })
+  filterKeys.forEach((key) => { filteredItems = filterItemsByKey(filteredItems, currentFilters, key) })
 
   return filteredItems
 })
 
 export const $filteredItemsCount = $filteredItems.map(items => items.length)
+
+$viewMode.on(changedViewMode, (_, viewMode) => viewMode)

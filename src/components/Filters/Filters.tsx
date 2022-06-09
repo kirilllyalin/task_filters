@@ -1,21 +1,19 @@
 import {
-  Space, Select, Slider, InputNumber, Radio, Checkbox, DatePicker, Input, Form, Button, Divider, Typography,
+  Select, Slider, InputNumber, Radio, Checkbox, DatePicker, Form, Button, Typography,
 } from 'antd'
 import { useStore } from 'effector-react'
-import { useEffect } from 'react'
 import moment from 'moment'
 
-import { $filteredItemsCount, $activeFilters } from 'models/items/init'
+import { $currentFilter } from 'models/items/init'
 import {
-  filteredByMark,
-  filteredByYear,
-  filteredByPrice,
-  filteredByMileAge,
-  filteredByEngine,
-  filteredByTransmission,
-  filteredByColor,
-  filteredByCrashed,
-  filteredByCanBeLoaned,
+  filterByMark,
+  filterByYear,
+  filterByPrice,
+  filterByMileAge,
+  filterByTransmission,
+  filterByColor,
+  filterByCrashed,
+  filterByCanBeLoaned,
   resetFilters,
 } from 'models/items'
 import { filterData } from 'models/items/mockedData'
@@ -34,8 +32,8 @@ const { Title } = Typography
 
 const Filters = () => {
   const {
-    mark, year, price, mileage, engine, transmission, color, isCrashed, isCanBeLoaned,
-  } = useStore($activeFilters)
+    mark, year, price, mileage, transmission, color, isCrashed, isCanBeLoaned,
+  } = useStore($currentFilter)
 
   return (
     <WrapperStyled>
@@ -44,7 +42,7 @@ const Filters = () => {
         <Form.Item
           label="Mark"
         >
-          <Select value={mark} onChange={filteredByMark}>
+          <Select value={mark} onChange={filterByMark}>
             <Option value={null}>All</Option>
             {marks.map(m => <Option value={m}>{m}</Option>)}
           </Select>
@@ -53,7 +51,7 @@ const Filters = () => {
           <RangePicker
             picker="year"
             value={[moment(year?.from), moment(year?.to)]}
-            onChange={(_, formatString) => filteredByYear({
+            onChange={(_, formatString) => filterByYear({
               from: formatString[0],
               to: formatString[1],
             })}
@@ -70,7 +68,7 @@ const Filters = () => {
             step={1000}
             tipFormatter={(value) => `${value}$`}
             value={price ? [price.from, price.to] : priceRange}
-            onChange={(value) => filteredByPrice({ from: value[0], to: value[1] })}
+            onChange={(value) => filterByPrice({ from: value[0], to: value[1] })}
           />
         </Form.Item>
         <Form.Item
@@ -84,26 +82,14 @@ const Filters = () => {
             step={1000}
             tipFormatter={(value) => `${value} miles`}
             value={mileage ? [mileage.from, mileage.to] : mileageRange}
-            onChange={(value) => filteredByMileAge({ from: value[0], to: value[1] })}
-          />
-        </Form.Item>
-        <Form.Item
-          label="Engine volume"
-        >
-          <InputNumber
-            addonAfter="v"
-            max={7.0}
-            min={1.0}
-            step={0.1}
-            value={engine}
-            onChange={(value) => filteredByEngine(value)}
+            onChange={(value) => filterByMileAge({ from: value[0], to: value[1] })}
           />
         </Form.Item>
         <Form.Item label="Transmission">
           <Radio.Group
             optionType="button"
             value={transmission}
-            onChange={({ target }) => filteredByTransmission(target.value)}
+            onChange={({ target }) => filterByTransmission(target.value)}
           >
             <Radio.Button value={null}>All</Radio.Button>
             <Radio.Button value="Manual">Manual</Radio.Button>
@@ -113,7 +99,7 @@ const Filters = () => {
         <Form.Item
           label="Color"
         >
-          <Select value={color} onChange={filteredByColor}>
+          <Select value={color} onChange={filterByColor}>
             <Option value={null}>All</Option>
             {colors.map(c => <Option value={c}>{c}</Option>)}
           </Select>
@@ -121,7 +107,7 @@ const Filters = () => {
         <Form.Item>
           <Checkbox
             checked={isCrashed ?? false}
-            onChange={({ target }) => filteredByCrashed(target.checked)}
+            onChange={({ target }) => filterByCrashed(target.checked)}
           >
             Been in an accident
           </Checkbox>
@@ -129,7 +115,7 @@ const Filters = () => {
         <Form.Item>
           <Checkbox
             checked={isCanBeLoaned ?? false}
-            onChange={({ target }) => filteredByCanBeLoaned(target.checked)}
+            onChange={({ target }) => filterByCanBeLoaned(target.checked)}
           >
             Can be loaned
           </Checkbox>
@@ -138,7 +124,6 @@ const Filters = () => {
           <Button block type="default" onClick={() => resetFilters()}>Reset filters</Button>
         </Form.Item>
       </Form>
-
     </WrapperStyled>
   )
 }
