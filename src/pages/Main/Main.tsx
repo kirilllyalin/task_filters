@@ -21,6 +21,7 @@ const Main = () => {
   const isFiltersOpened = useStore($isFiltersOpened)
 
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' })
+  const isPhone = useMediaQuery({ query: '(max-width: 480px)' })
 
   const renderContent = () => {
     if (itemsCount === 0) {
@@ -31,7 +32,7 @@ const Main = () => {
       return <Cards />
     }
 
-    return <List />
+    return <List isPhone={isPhone} />
   }
 
   if (isTablet) {

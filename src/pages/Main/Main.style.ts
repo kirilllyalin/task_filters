@@ -35,5 +35,4 @@ export const TabletHeaderStyled = styled.div`
   background-color: #FFFFFF;
 
   border-bottom: 1px solid #0000000f;
-
 `

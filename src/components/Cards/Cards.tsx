@@ -4,7 +4,7 @@ import {
 import { useStore } from 'effector-react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
-import { CardDescription } from 'components/index'
+import { ItemDescription } from 'components/index'
 import { $filteredItems } from 'models/items/init'
 
 import CardTitle from './CardTitle'
@@ -35,7 +35,7 @@ const Cards = () => {
           hoverable
         >
           <Meta
-            description={<CardDescription item={item} />}
+            description={<ItemDescription item={item} />}
             title={<CardTitle item={item} />}
           />
         </Card>
