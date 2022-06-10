@@ -23,7 +23,7 @@ export const WrapperStyled = styled.div`
   }
 
   @media (max-width: 569px) {
-    grid-template-columns: repeat(1, calc(100% - 7.5px));
+    grid-template-columns: repeat(1, 100%);
   }
 `
 
