@@ -5,3 +5,5 @@ export { default as List } from './List/List'
 export { default as Cards } from './Cards/Cards'
 
 export { default as ViewToggle } from './ViewToggle/ViewToggle'
+
+export { default as CardDescription } from './CardDescription/CardDescription'

@@ -85,6 +85,7 @@ const Filters = () => {
         <Form.Item label="Transmission">
           <Radio.Group
             optionType="button"
+            style={{ width: '100%' }}
             value={transmission}
             onChange={({ target }) => filterByTransmission(target.value)}
           >

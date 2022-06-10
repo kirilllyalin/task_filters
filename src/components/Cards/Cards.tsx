@@ -4,9 +4,9 @@ import {
 import { useStore } from 'effector-react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
+import { CardDescription } from 'components/index'
 import { $filteredItems } from 'models/items/init'
 
-import CardDescription from './CardDescription'
 import CardTitle from './CardTitle'
 import { WrapperStyled } from './Cards.style'
 
@@ -26,14 +26,13 @@ const Cards = () => {
             <LazyLoadImage
               alt={`${item.mark} ${item.model}`}
               effect="opacity"
-              height={240}
               src={item.image}
-              style={{ objectFit: 'cover', padding: 20 }}
-              width={350}
+              style={{
+                objectFit: 'cover', padding: 20, height: '100%', width: '100%',
+              }}
             />
           )}
           hoverable
-          style={{ width: 350 }}
         >
           <Meta
             description={<CardDescription item={item} />}

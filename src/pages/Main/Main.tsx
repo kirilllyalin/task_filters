@@ -1,5 +1,5 @@
 import {
-  Row, Col, Typography, Empty, Divider, Space,
+  Row, Col, Typography, Empty, Divider,
 } from 'antd'
 import { useStore } from 'effector-react'
 
@@ -30,14 +30,14 @@ const Main = () => {
   }
 
   return (
-    <Row gutter={[32, 0]}>
-      <Col flex="300px">
+    <WrapperStyled>
+      <Col>
         <Title level={4} style={{ height: 40, verticalAlign: 'center' }}>Filtration</Title>
         <Divider />
         <Filters />
       </Col>
-      <Col flex="auto">
-        <Row justify="space-between" style={{ width: '100%' }}>
+      <Col>
+        <Row justify="space-between">
           <Title level={4}>
             Items (
             { itemsCount }
@@ -48,7 +48,7 @@ const Main = () => {
         <Divider />
         {renderContent()}
       </Col>
-    </Row>
+    </WrapperStyled>
   )
 }
 
