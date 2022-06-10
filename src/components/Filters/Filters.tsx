@@ -1,5 +1,5 @@
 import {
-  Select, Slider, InputNumber, Radio, Checkbox, DatePicker, Form, Button, Typography,
+  Select, Slider, InputNumber, Radio, Checkbox, DatePicker, Form, Button, Typography, Divider,
 } from 'antd'
 import { useStore } from 'effector-react'
 import moment from 'moment'
@@ -28,8 +28,6 @@ const { RangePicker } = DatePicker
 
 const { Option } = Select
 
-const { Title } = Typography
-
 const Filters = () => {
   const {
     mark, year, price, mileage, transmission, color, isCrashed, isCanBeLoaned,
@@ -37,7 +35,6 @@ const Filters = () => {
 
   return (
     <WrapperStyled>
-      <Title level={4}>Filtration</Title>
       <Form layout="vertical">
         <Form.Item
           label="Mark"

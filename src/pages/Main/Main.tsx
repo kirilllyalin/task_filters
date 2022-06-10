@@ -1,4 +1,6 @@
-import { Row, Col, Typography } from 'antd'
+import {
+  Row, Col, Typography, Empty, Divider, Space,
+} from 'antd'
 import { useStore } from 'effector-react'
 
 import {
@@ -15,25 +17,38 @@ const Main = () => {
   const viewMode = useStore($viewMode)
   const itemsCount = useStore($filteredItemsCount)
 
+  const renderContent = () => {
+    if (itemsCount === 0) {
+      return <Empty style={{ marginTop: 100 }} />
+    }
+
+    if (viewMode === 'cards') {
+      return <Cards />
+    }
+
+    return <List />
+  }
+
   return (
-    <WrapperStyled>
-      <Row gutter={[10, 0]} style={{ width: '100%' }}>
-        <Col span={3}>
-          <Filters />
-        </Col>
-        <Col offset={1} span={20}>
-          <Row align="middle" justify="space-between" style={{ width: '100%' }}>
-            <Title level={4}>
-              Items (
-              { itemsCount }
-              )
-            </Title>
-            <ViewToggle />
-          </Row>
-          {viewMode === 'cards' ? <Cards /> : <List />}
-        </Col>
-      </Row>
-    </WrapperStyled>
+    <Row gutter={[32, 0]}>
+      <Col flex="300px">
+        <Title level={4} style={{ height: 40, verticalAlign: 'center' }}>Filtration</Title>
+        <Divider />
+        <Filters />
+      </Col>
+      <Col flex="auto">
+        <Row justify="space-between" style={{ width: '100%' }}>
+          <Title level={4}>
+            Items (
+            { itemsCount }
+            )
+          </Title>
+          <ViewToggle />
+        </Row>
+        <Divider />
+        {renderContent()}
+      </Col>
+    </Row>
   )
 }
 
