@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { combine } from 'effector'
 
 import { filterItemsByKey } from './helpers'

@@ -21,7 +21,7 @@ export const $filters = createStore<Filters>({
     from: 20000,
     to: 60000,
   },
-  transmission: null,
+  transmission: '',
   color: null,
   isCrashed: false,
   isCanBeLoaned: true,

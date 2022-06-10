@@ -41,7 +41,7 @@ const Filters = () => {
         >
           <Select value={mark} onChange={filterByMark}>
             <Option value={null}>All</Option>
-            {marks.map(m => <Option value={m}>{m}</Option>)}
+            {marks.map(m => <Option key={m} value={m}>{m}</Option>)}
           </Select>
         </Form.Item>
         <Form.Item label="Production year">
@@ -89,7 +89,7 @@ const Filters = () => {
             value={transmission}
             onChange={({ target }) => filterByTransmission(target.value)}
           >
-            <Radio.Button value={null}>All</Radio.Button>
+            <Radio.Button value="">All</Radio.Button>
             <Radio.Button value="Manual">Manual</Radio.Button>
             <Radio.Button value="Automatic">Automatic</Radio.Button>
           </Radio.Group>
@@ -99,12 +99,12 @@ const Filters = () => {
         >
           <Select value={color} onChange={filterByColor}>
             <Option value={null}>All</Option>
-            {colors.map(c => <Option value={c}>{c}</Option>)}
+            {colors.map(c => <Option key={c} value={c}>{c}</Option>)}
           </Select>
         </Form.Item>
         <Form.Item>
           <Checkbox
-            checked={isCrashed ?? false}
+            checked={isCrashed}
             onChange={({ target }) => filterByCrashed(target.checked)}
           >
             Been in an accident
@@ -112,7 +112,7 @@ const Filters = () => {
         </Form.Item>
         <Form.Item>
           <Checkbox
-            checked={isCanBeLoaned ?? false}
+            checked={isCanBeLoaned}
             onChange={({ target }) => filterByCanBeLoaned(target.checked)}
           >
             Can be loaned

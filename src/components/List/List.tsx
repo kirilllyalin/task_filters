@@ -2,11 +2,12 @@ import {
   List as AntdList, Avatar,
 } from 'antd'
 import { useStore } from 'effector-react'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 import { $filteredItems } from 'models/items/init'
 
 import { ItemDescription } from '..'
+
+import { LazyLoadImageStyled } from './List.style'
 
 import 'react-lazy-load-image-component/src/effects/opacity.css'
 
@@ -37,13 +38,10 @@ const List = ({ isPhone }: { isPhone: boolean }) => {
         <AntdList.Item
           key={item.model}
           extra={(
-            <LazyLoadImage
+            <LazyLoadImageStyled
               alt={`${item.mark} ${item.model}`}
               effect="opacity"
               src={item.image}
-              style={{
-                objectFit: 'cover', width: 270, height: 200, padding: 15,
-              }}
             />
           )}
         >

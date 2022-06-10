@@ -63,7 +63,7 @@ export const data: Car[] = [
     image: 'https://alatp-photos-kl.kcdn.kz/webp/24/24a54d9e-787d-4523-8a0a-cdf297eeb81b/76-750x470.webp',
     mileage: 50000,
     transmission: 'Automatic',
-    color: 'Black',
+    color: 'White',
     isCrashed: true,
     isCanBeLoaned: true,
   },

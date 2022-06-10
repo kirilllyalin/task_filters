@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export const WrapperStyled = styled.div`
   display: grid;
@@ -17,11 +18,19 @@ export const WrapperStyled = styled.div`
     grid-template-columns: repeat(3, calc(33% - 7.5px));
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1120px) {
     grid-template-columns: repeat(2, calc(50% - 7.5px));
   }
 
   @media (max-width: 569px) {
     grid-template-columns: repeat(1, calc(100% - 7.5px));
   }
+`
+
+export const LazyLoadImageStyled = styled(LazyLoadImage)`
+  width: 100%;
+  height: 100%; 
+  padding: 20px; 
+
+  object-fit: cover; 
 `

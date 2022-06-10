@@ -13,10 +13,10 @@ export interface Filters {
   price: FromToNumberValue | null,
   mileage: FromToNumberValue | null,
   mark: string | null,
-  transmission: 'Automatic' | 'Manual' | null,
+  transmission: 'Automatic' | 'Manual' | '',
   color: string | null,
-  isCrashed: boolean | null,
-  isCanBeLoaned: boolean | null,
+  isCrashed: boolean,
+  isCanBeLoaned: boolean,
 }
 
 export interface Car {
