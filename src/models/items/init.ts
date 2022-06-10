@@ -2,25 +2,27 @@
 import { combine } from 'effector'
 
 import { filterItemsByKey } from './helpers'
-import { Car, Filter } from './types'
+import { Car, Filters } from './types'
 
 import {
-  $filter,
+  $filters,
   $items,
   resetFilters,
   filter,
   $viewMode,
-  changedViewMode,
+  changeViewMode,
+  showFilters,
+  $isFiltersOpened,
 } from '.'
 
-export const $currentFilter = $filter
+export const $currentFilters = $filters
   .on(filter, (state, { key, value }) => ({ ...state, [key]: value }))
   .reset(resetFilters)
 
-export const $filteredItems = combine($items, $currentFilter, (items, currentFilters) => {
+export const $filteredItems = combine($items, $currentFilters, (items, currentFilters) => {
   let filteredItems: Car[] = items
 
-  const filterKeys = Object.keys(currentFilters) as Array<keyof Filter>
+  const filterKeys = Object.keys(currentFilters) as Array<keyof Filters>
 
   filterKeys.forEach((key) => { filteredItems = filterItemsByKey(filteredItems, currentFilters, key) })
 
@@ -29,4 +31,6 @@ export const $filteredItems = combine($items, $currentFilter, (items, currentFil
 
 export const $filteredItemsCount = $filteredItems.map(items => items.length)
 
-$viewMode.on(changedViewMode, (_, viewMode) => viewMode)
+$viewMode.on(changeViewMode, (_, viewMode) => viewMode)
+
+$isFiltersOpened.on(showFilters, (_, value) => value)

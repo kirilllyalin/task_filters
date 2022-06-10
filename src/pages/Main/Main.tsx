@@ -1,21 +1,26 @@
 import {
-  Row, Col, Typography, Empty, Divider,
+  Row, Col, Typography, Empty, Divider, Button, Space, Modal,
 } from 'antd'
 import { useStore } from 'effector-react'
+import { useMediaQuery } from 'react-responsive'
+import { FilterOutlined } from '@ant-design/icons'
 
 import {
   Cards, Filters, List, ViewToggle,
 } from 'components'
-import { $viewMode } from 'models/items/index'
+import { $viewMode, $isFiltersOpened, showFilters } from 'models/items/index'
 import { $filteredItemsCount } from 'models/items/init'
 
-import { WrapperStyled } from './Main.style'
+import { WrapperStyled, TabletHeaderStyled } from './Main.style'
 
 const { Title } = Typography
 
 const Main = () => {
   const viewMode = useStore($viewMode)
   const itemsCount = useStore($filteredItemsCount)
+  const isFiltersOpened = useStore($isFiltersOpened)
+
+  const isTablet = useMediaQuery({ query: '(max-width: 1024px)' })
 
   const renderContent = () => {
     if (itemsCount === 0) {
@@ -27,6 +32,40 @@ const Main = () => {
     }
 
     return <List />
+  }
+
+  if (isTablet) {
+    return (
+      <WrapperStyled>
+        <Col>
+          <TabletHeaderStyled>
+            <Title level={4}>
+              Items (
+              { itemsCount }
+              )
+            </Title>
+            <Space>
+              <Button
+                icon={<FilterOutlined />}
+                size="large"
+                type="primary"
+                onClick={() => showFilters(true)}
+              />
+              <ViewToggle />
+            </Space>
+          </TabletHeaderStyled>
+          {renderContent()}
+          <Modal
+            title="Filtration"
+            visible={isFiltersOpened}
+            onCancel={() => showFilters(false)}
+            onOk={() => showFilters(false)}
+          >
+            <Filters />
+          </Modal>
+        </Col>
+      </WrapperStyled>
+    )
   }
 
   return (
@@ -43,7 +82,9 @@ const Main = () => {
             { itemsCount }
             )
           </Title>
-          <ViewToggle />
+          <Space>
+            <ViewToggle />
+          </Space>
         </Row>
         <Divider />
         {renderContent()}

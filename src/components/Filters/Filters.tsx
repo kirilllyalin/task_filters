@@ -1,10 +1,10 @@
 import {
-  Select, Slider, InputNumber, Radio, Checkbox, DatePicker, Form, Button, Typography, Divider,
+  Select, Slider, Radio, Checkbox, DatePicker, Form, Button,
 } from 'antd'
 import { useStore } from 'effector-react'
 import moment from 'moment'
 
-import { $currentFilter } from 'models/items/init'
+import { $currentFilters } from 'models/items/init'
 import {
   filterByMark,
   filterByYear,
@@ -16,13 +16,13 @@ import {
   filterByCanBeLoaned,
   resetFilters,
 } from 'models/items'
-import { filterData } from 'models/items/mockedData'
+import { filtersData } from 'models/items/mockedData'
 
 import { WrapperStyled } from './Filters.style'
 
 import type { SliderMarks } from 'antd/lib/slider'
 
-const { marks, colors } = filterData
+const { marks, colors } = filtersData
 
 const { RangePicker } = DatePicker
 
@@ -31,11 +31,11 @@ const { Option } = Select
 const Filters = () => {
   const {
     mark, year, price, mileage, transmission, color, isCrashed, isCanBeLoaned,
-  } = useStore($currentFilter)
+  } = useStore($currentFilters)
 
   return (
     <WrapperStyled>
-      <Form layout="vertical">
+      <Form layout="vertical" style={{ width: '96%' }}>
         <Form.Item
           label="Mark"
         >

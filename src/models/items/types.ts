@@ -8,7 +8,7 @@ export type FromToStringValue = { from: string, to: string }
 
 export type DefaultValue = string | number | boolean | null
 
-export interface Filter {
+export interface Filters {
   year: FromToStringValue | null,
   price: FromToNumberValue | null,
   mileage: FromToNumberValue | null,

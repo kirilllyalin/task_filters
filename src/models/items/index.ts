@@ -2,12 +2,12 @@ import { createStore, createEvent } from 'effector'
 
 import { data } from './mockedData'
 import {
-  Car, Filter, PossibleFilterValue,
+  Car, Filters, PossibleFilterValue,
 } from './types'
 
 export const $items = createStore<Car[]>(data)
 
-export const $filter = createStore<Filter>({
+export const $filters = createStore<Filters>({
   mark: null,
   year: {
     from: '2000',
@@ -29,27 +29,31 @@ export const $filter = createStore<Filter>({
 
 export const filter = createEvent<{ key: string, value: PossibleFilterValue }>()
 
-export const prependFilteredEventByKey = (key: keyof Filter) => filter
+export const prependFilterEventByKey = (key: keyof Filters) => filter
   .prepend<PossibleFilterValue>(value => ({ key, value }))
 
 export const $viewMode = createStore<'cards' | 'list'>('cards')
 
-export const changedViewMode = createEvent<'cards' | 'list'>()
+export const $isFiltersOpened = createStore<boolean>(false)
 
-export const filterByMark = prependFilteredEventByKey('mark')
+export const changeViewMode = createEvent<'cards' | 'list'>()
 
-export const filterByYear = prependFilteredEventByKey('year')
+export const showFilters = createEvent<boolean>()
 
-export const filterByPrice = prependFilteredEventByKey('price')
+export const filterByMark = prependFilterEventByKey('mark')
 
-export const filterByMileAge = prependFilteredEventByKey('mileage')
+export const filterByYear = prependFilterEventByKey('year')
 
-export const filterByTransmission = prependFilteredEventByKey('transmission')
+export const filterByPrice = prependFilterEventByKey('price')
 
-export const filterByColor = prependFilteredEventByKey('color')
+export const filterByMileAge = prependFilterEventByKey('mileage')
 
-export const filterByCrashed = prependFilteredEventByKey('isCrashed')
+export const filterByTransmission = prependFilterEventByKey('transmission')
 
-export const filterByCanBeLoaned = prependFilteredEventByKey('isCanBeLoaned')
+export const filterByColor = prependFilterEventByKey('color')
+
+export const filterByCrashed = prependFilterEventByKey('isCrashed')
+
+export const filterByCanBeLoaned = prependFilterEventByKey('isCanBeLoaned')
 
 export const resetFilters = createEvent()

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { Car } from './types'
 
-export const filterData: {[key: string]: string[]} = {
+export const filtersData: {[key: string]: string[]} = {
   marks: ['Toyota', 'BMW', 'KIA', 'Renault'],
   colors: ['Blue', 'Red', 'Gray', 'Bronze', 'Black', 'White', 'Beige', 'Green', 'Brown', 'Gold'],
 }

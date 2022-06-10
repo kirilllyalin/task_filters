@@ -1,5 +1,5 @@
 import {
-  FromToValue, DefaultValue, Filter, Car,
+  FromToValue, DefaultValue, Filters, Car,
 } from './types'
 
 export const checkEquality = (value: DefaultValue, checkedValue: string | number | boolean): boolean => {
@@ -27,13 +27,13 @@ export const checkForRange = (range: FromToValue | null, checkedValue: number | 
   return false
 }
 
-export const filterItemsByKey = (items: Car[], filter: Filter, key: keyof Filter): Car[] => {
+export const filterItemsByKey = (items: Car[], filters: Filters, key: keyof Filters): Car[] => {
   if (key === 'price' || key === 'mileage' || key === 'year') {
-    return items.filter(item => checkForRange(filter[key], item[key]))
+    return items.filter(item => checkForRange(filters[key], item[key]))
   }
 
   if (key === 'color' || key === 'mark' || key === 'transmission' || key === 'isCrashed' || key === 'isCanBeLoaned') {
-    return items.filter(item => checkEquality(filter[key], item[key]))
+    return items.filter(item => checkEquality(filters[key], item[key]))
   }
 
   return items
